@@ -1,5 +1,5 @@
 {
-    "home": [
+    "away": [
         {
             "number":"1",
             "name":"SGT Titchard-Jones"},
@@ -76,7 +76,7 @@
             "number":"25",
             "name":"LCPL Wheeldon"}
         ],
-    "away": [
+    "home": [
         {
             "number":"1",
             "name":"Van Wyk"},
