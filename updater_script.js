@@ -41,7 +41,7 @@ function awayL3(playerNumber) {
 
 function timeAdjust() {
   //Send the text box value
-  var adjust = document.getElementById("timeAdjustText").value;
+  var adjust = document.getElementById("nameAdjustBox").value;
   socket.emit("timeAdjust", adjust);
 }
 

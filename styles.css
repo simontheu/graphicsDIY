@@ -69,16 +69,28 @@ body
     cursor: pointer;
 }
 
-.timeAdjustText {
+.nameAdjustBox {
+    background-color:#eeeeee;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 25pxf
+    text-align: center;
+    font-size: 30px;
+    width: 400px;
+    cursor: pointer;
+}
+
+.scoreTextBox {
     background-color:#eeeeee;
     border: none;
     color: rgb(0, 0, 0);
     padding: 15px 25px;
     text-align: center;
     font-size: 30px;
-    width: 200px;
+    width: 100px;
     cursor: pointer;
 }
+
 /*
 .bevelBoxScore
 {
