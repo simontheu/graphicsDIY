@@ -1,107 +1,68 @@
 var socket = io();
 
-socket.emit('getTeams');
+socket.emit('getNames');
 
-//Outgoing updates to index
-function homeScore(scoreChange) { 
-  socket.emit('homeScore',scoreChange);
+var score = [[0,0],[0,0],[0,0],[0,0]];//All match scores zeroed
+
+//Outgoing updates to index 
+function animateClock(matchNumber) { 
+  console.log("TEST");
+  socket.emit('animateClock',matchNumber);
+  console.log("TEST");
 }
 
-function awayScore(scoreChange) {
-  socket.emit('awayScore',scoreChange);
+function setNames(matchNumber) { 
+  var matches = ["A","B","C","D"];
+  var players = ["A","B","C","D"];
+  var namesExport = Array();
+  matches.forEach(match => {
+    players.forEach(player => {
+      var elementID = "match" + match + "Player" + player;
+      console.log(elementID);
+      var name = document.getElementById(elementID).value;
+      namesExport.push ({ "match" : match,
+                          "player" : player,
+                          "name" : name });
+    })
+  });
+  console.log(namesExport);
+  socket.emit("saveNames", namesExport)
 }
 
-function clockAnim(direction) {
-  socket.emit('clockAnim',direction);
+function animateIdent(matchNumber) {
+  console.log("animateIdent");
+  socket.emit("animateIdent", matchNumber);
 }
 
-function clockTime(action) {
-  socket.emit('clockTime',action);
+function adjustScore(match, team, adjustAmount) {
+  console.log("adjustScore");
+  score[match][team] = score[match][team] + adjustAmount;
+  socket.emit("adjustScore", match, team, score[match][team]);
+  populateScoreBoxes();
 }
 
-function halfUpdate(half) {
-  socket.emit('halfUpdate',half);
-}
-
-function lowerThirdScore(direction) {
-  socket.emit('lowerThirdScore',direction);
-}
-
-function setLowerThirdScoreBackground(half) {
-  socket.emit('setLowerThirdScoreBackground',half);
-}
-
-function homeL3(playerNumber) {
-  socket.emit('homeL3',playerNumber);
-}
-
-function awayL3(playerNumber) {
-  socket.emit('awayL3',playerNumber);
-}
-
-function timeAdjust() {
-  //Send the text box value
-  var adjust = document.getElementById("nameAdjustBox").value;
-  socket.emit("timeAdjust", adjust);
-}
-
-//Echos back to the updater
-
-socket.on('timeAnnounce', function(msg){
-  document.getElementById("clockTime").textContent =  msg;
-});
-
-socket.on('halfAnnounce', function(msg){
-  document.getElementById("halfIndicator").textContent =  msg;
-});
-
-socket.on('awayScoreUpdate', function(msg){
-  document.getElementById("awayScoreVal").textContent =  msg;
-});
-
-socket.on('homeScoreUpdate', function(msg){
-  document.getElementById("homeScoreVal").textContent =  msg;
-});
-
-socket.on('lowerThirdScoreBackgroundAnnounce', function(msg){
-  document.getElementById("lowerThirdScoreBackground").src = msg;
-});
-
-socket.on('lowerThirdScoreOnAirAnnounce', function(msg){
-  if (msg){
-    document.getElementById("lowerThirdScoreBackground").style.backgroundColor = "#ff0000";
-  } else {
-    document.getElementById("lowerThirdScoreBackground").style.backgroundColor = null;
+function populateScoreBoxes() {
+  var matches = ["A","B","C","D"];
+  var teams = ["A","B"];
+  for (i=0;i<4;i++) {
+    for (j=0;j<2;j++) {
+      //scoreTextBoxMatchBTeamB
+      console.log("scoreTextBoxMatch" + matches[i-1] + "Team" + teams[j-1]);
+      var docElem = document.getElementById("scoreTextBoxMatch" + matches[i-1] + "Team" + teams[j-1]);
+      docElem.textContent = "xx";//(score[i-1][j-1]);
+    }
   }
-  
-});
+}
 
-socket.on('clockOnAirAnnounce', function(msg){
-  if (msg){
-    document.getElementById("clockScoreBackground").style.backgroundColor = "#ff0000";
-  } else {
-    document.getElementById("clockScoreBackground").style.backgroundColor = null;
-  }
-  
-});
-
-socket.on('gotTeams', function(msg){
-  console.log(msg.home);
-  //Sort home player buttons
+socket.on('gotNames', function(msg){
+  console.log(msg);
+  //Set names from file
   var index = 1;
-  msg.home.forEach(element => {
-    var docElem = document.getElementById("homePlayer" + index);
-    console.log( element.number);
-    docElem.textContent = element.number;
+  msg.forEach(element => {
+    var docElem = document.getElementById("match" + element.match + "Player" + element.player);
+    docElem.value = element.name;
+    console.log(element.element + ":" + element.name);
     index++;
   });
 
-  //Populate away player buttons
-  index = 1;
-  msg.away.forEach(element => {
-    var docElem = document.getElementById("awayPlayer" + index);
-    console.log( element.number);
-    docElem.textContent = element.number;
-    index++;
-  });
 });

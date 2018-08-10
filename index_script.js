@@ -4,48 +4,25 @@ var socket = io();
 socket.emit('getTeams',0);
 
 var timer = new Timer();
+var visibleMatchClock = 0;
 
-timer.addEventListener('secondsUpdated', function (e) {
-  updateVisibleTime();
+
+socket.on('adjustScore', function(match, team, newScore){   
+  if (visibleMatchClock == team) {
+    document.getElementById("teamAScoreVal").textContent = score[match][0];
+    document.getElementById("teamBScoreVal").textContent = score[match][1];
+}
 });
 
-socket.on('awayScore', function(msg){
-  scoreNum = Number(document.getElementById("awayScoreVal").textContent);
-  scoreNum = scoreNum + Number(msg);
-  if (scoreNum < 10) {
-    scoreText = ' ' + String(scoreNum);
-  } else {
-    scoreText = String(scoreNum);
-  }
-  document.getElementById("awayScoreVal").textContent =  scoreText;
-  document.getElementById("awayScoreLower3rdVal").textContent =  scoreText;
-
-  socket.emit('awayScoreUpdate', scoreText);
-
-});
-
-socket.on('homeScore', function(msg){
-  scoreNum = Number(document.getElementById("homeScoreVal").textContent);
-  scoreNum = scoreNum + Number(msg);
-  if (scoreNum < 10) {
-    scoreText = ' ' + String(scoreNum);
-  } else {
-    scoreText = String(scoreNum);
-  }
-  document.getElementById("homeScoreVal").textContent =  scoreText;
-  document.getElementById("homeScoreLower3rdVal").textContent =  scoreText;
-
-  socket.emit('homeScoreUpdate', scoreText);
-
-});
-
-socket.on('clockAnim', function(msg){
-  if (Number(msg) == 1) {
-    document.getElementById("scoreClockDiv").className = "rotateIn";
-    socket.emit('clockOnAirAnnounce',1);
-  } else {
+socket.on('animateClock', function(msg){
+  console.log("Animate clock" + msg);
+  //If in animate out, if out, change contents and animate in
+  if (document.getElementById("scoreClockDiv").className == "rotateIn") {
     document.getElementById("scoreClockDiv").className = "rotateOut";
-    socket.emit('clockOnAirAnnounce',0);
+  } else {
+    //Populate score and name initials for clock before animating
+    document.getElementById("teamAInitialsVal").textContent = "TT/EE";
+    document.getElementById("scoreClockDiv").className = "rotateIn";
   }
 });
 
@@ -73,87 +50,20 @@ socket.on('setLowerThirdScoreBackground', function(msg){
   
 });
 
-socket.on('clockTime', function(msg){
-  if (Number(msg) == 1) {
-    //Start Clock
-    timer.start();
-  } else if (Number(msg) == 0){
-    //Stop Clock
-    timer.pause();//This is a better stop, than the stop that resets also.
-  } else if (Number(msg) == 2){//Reset
-    //Stop Clock
-    timer.stop();
-    updateVisibleTime();
-  }
-  
-});
 
-socket.on('halfUpdate', function(msg){
-  //document.getElementById("clockScoreBackground").className = "rotateOut";
-  if (Number(msg) == 1) {
-    //Set 1st half
-    document.getElementById("halfIndicator").textContent = "1st";
-    socket.emit('halfAnnounce', "1st");
+socket.on('animateIdent', function(msg){
+  console.log("monosodium glutomate" + msg);
+  if (document.getElementById("lowerThirdIdentDiv").className == "lowerThirdScoreIn") {
+    document.getElementById("lowerThirdIdentDiv").className = "lowerThirdScoreOut";
   } else {
-    //Set 2nd half
-    document.getElementById("halfIndicator").textContent = "2nd";
-    socket.emit('halfAnnounce', "2nd");
-  } 
-});
-
-socket.on('timeAdjust', function(msg){
-  //document.getElementById("clockScoreBackground").className = "rotateOut";
-  //process the hours to minutes problem here
-  var minutesVal = Number(msg.substring(0,2));
-  var secondsVal = Number(msg.substring(3,5));//01:34:67
-
-  timer.stop();//Cant get it to work without this 
-  timer.start ( {startValues: { minutes: minutesVal, seconds: secondsVal }} );
-
-  
-  updateVisibleTime();
-});
-
-socket.on('homeL3', function(msg){
-  var playerNum = teams.home[msg].number;
-  var playerName = teams.home[msg].name;
-  var l3Text = playerNum + " " + playerName;
-  if (document.getElementById("lowerThirdHomePlayerDiv").className == "lowerThirdScoreIn") {
-    document.getElementById("lowerThirdHomePlayerDiv").className = "lowerThirdScoreOut";
-  } else {
-    document.getElementById("homeLower3rdNameVal").textContent = l3Text;
-    document.getElementById("lowerThirdHomePlayerDiv").className = "lowerThirdScoreIn";
+    console.log("Send it in");//
+    msg.forEach(player => {
+      console.log("player:" + player.player);
+      document.getElementById("lower3rdIdentPlayer" + player.player + "Val").textContent = player.name;
+    });
+    document.getElementById("lowerThirdIdentDiv").className = "lowerThirdScoreIn";
   }
 });
-
-socket.on('awayL3', function(msg){
-  var playerNum = teams.away[msg].number;
-  var playerName = teams.away[msg].name;
-  var l3Text = playerNum + " " + playerName;
-  if (document.getElementById("lowerThirdAwayPlayerDiv").className == "lowerThirdScoreIn") {
-    document.getElementById("lowerThirdAwayPlayerDiv").className = "lowerThirdScoreOut";
-  } else {
-    document.getElementById("awayLower3rdNameVal").textContent = l3Text;
-    document.getElementById("lowerThirdAwayPlayerDiv").className = "lowerThirdScoreIn";
-  }
-});
-
-function updateVisibleTime()
-{
-  var timeString;
-  if (timer.getTimeValues().hours > 0) {
-    console.log("oh shit");
-    var minutes = String(timer.getTimeValues().minutes + (60 * timer.getTimeValues().hours)).padStart(2,"0");
-    var seconds = String(timer.getTimeValues().seconds).padStart(2,"0");
-    timeString = minutes + ":" + seconds;
-
-  } else {
-    timeString = timer.getTimeValues().toString().substring(3);
-  }
-  
-  document.getElementById("clockTime").textContent =  timeString;
-  socket.emit('timeAnnounce',timeString);
-}
 
 socket.on('gotTeams', function(msg){
   console.log("got teams", msg);

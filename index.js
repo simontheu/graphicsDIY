@@ -2,11 +2,10 @@ var app = require('express')();//TESTx
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var Timer = require('easytimer'); 
-var teams = require('./teams.json');
+var jsonfile = require('jsonfile');
 
 var timer = new Timer();
 
-console.log(teams.away);
 
 app.get('/index', function(req, res){
     res.sendFile(__dirname + '/index.html');
@@ -20,12 +19,12 @@ app.get('/styles.css', function(req, res) {
     res.sendFile(__dirname + '/styles.css');
 });
 
-app.get('/media/clock_static.png', function(req, res) {
-    res.sendFile(__dirname + '/media/clock_static.png');
+app.get('/media/bowls/clock.png', function(req, res) {
+    res.sendFile(__dirname + '/media/bowls/clock.png');
 });
 
-app.get('/media/half_time_lower_3rd.png', function(req, res) {
-    res.sendFile(__dirname + '/media/half_time_lower_3rd.png');
+app.get('/media/bowls/bowls-ident.png', function(req, res) {
+    res.sendFile(__dirname + '/media/bowls/bowls-ident.png');
 });
 
 app.get('/media/full_time_lower_3rd.png', function(req, res) {
@@ -53,60 +52,43 @@ app.get('/node_modules/easytimer/dist/easytimer.min.js', function(req, res) {
 });
 
 io.on('connection', function(socket){
-    socket.on('awayScore', function(msg){
-      io.emit('awayScore',  msg);
+    socket.on('animateClock', function(msg){
+        console.log("Test index");
+        io.emit('animateClock',  msg);
     });
-    socket.on('homeScore', function(msg){
-        io.emit('homeScore', msg);
+    socket.on('animateIdent', function(msg){
+        var graphicPlayers = Array();
+        var matches = ["A","B","C","D"];
+        var match = matches[msg-1];
+        jsonfile.readFile("names.json", function(err, names) {
+            names.forEach(element => {
+                if (element.match == match) {
+                    graphicPlayers.push(element);
+                }
+            });
+            console.log(graphicPlayers);
+            io.emit('animateIdent', graphicPlayers);//Only send valid names
+            if (err) console.log(err); 
+          })
     });
-    socket.on('clockAnim', function(msg){
-        io.emit('clockAnim', msg);
+    socket.on('adjustScore', function(match, team, newScore){
+        console.log("Test score adjust:" + match + ":" + team + ":" + newScore);
+        io.emit('adjustScore', match, team, newScore);
     });
-    socket.on('clockTime', function(msg){
-        io.emit('clockTime', msg);
+
+    socket.on('getNames', function(){
+        jsonfile.readFile("names.json", function(err, names) {
+            io.emit('gotNames', names);
+            console.log(names);
+            console.log(err); 
+          })
     });
-    socket.on('timeAnnounce', function(msg){
-        io.emit('timeAnnounce', msg);
-    });
-    socket.on('halfUpdate', function(msg){
-        io.emit('halfUpdate', msg);
-    });
-    socket.on('halfAnnounce', function(msg){
-        io.emit('halfAnnounce', msg);
-    });
-    socket.on('timeAdjust', function(msg){
-        io.emit('timeAdjust', msg);
-    });
-    socket.on('homeScoreUpdate', function(msg){
-        io.emit('homeScoreUpdate', msg);
-    });
-    socket.on('awayScoreUpdate', function(msg){
-        io.emit('awayScoreUpdate', msg);
-    });
-    socket.on('lowerThirdScore', function(msg){
-        io.emit('lowerThirdScore', msg);
-    });
-    socket.on('setLowerThirdScoreBackground', function(msg){
-        io.emit('setLowerThirdScoreBackground', msg);
-    });
-    socket.on('lowerThirdScoreBackgroundAnnounce', function(msg){
-        io.emit('lowerThirdScoreBackgroundAnnounce', msg);
-    });
-    socket.on('lowerThirdScoreOnAirAnnounce', function(msg){
-        io.emit('lowerThirdScoreOnAirAnnounce', msg);
-    });
-    socket.on('clockOnAirAnnounce', function(msg){
-        io.emit('clockOnAirAnnounce', msg);
-    });
-    socket.on('homeL3', function(msg){
-        io.emit('homeL3', msg);
-    });
-    socket.on('awayL3', function(msg){
-        io.emit('awayL3', msg);
-    });
-    socket.on('getTeams', function(){
-        console.log(teams);
-        io.emit('gotTeams', teams);
+    socket.on('saveNames', function(msg){
+        console.log("saveNames");
+        jsonfile.writeFile("names.json", msg, function(err) {
+            console.error(err);
+        })
+        io.emit('saveNames');
     })
     console.log('connection received');
 });

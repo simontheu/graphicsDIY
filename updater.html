@@ -4,58 +4,182 @@
 
 
 <div class="settings">
-    <div class="scoreButtons">
-            <div class="divScoreTable">
+    <div class="scoreButtons"> 
+            <div class="divScoreTable"> 
                 <div class="divTableBody">
                     <div class="divTableRow">MATCH A:</div>
                     <div class="divTableRow">
-                            <div class="divTableCell">SIDE A:</div>
-                            <div class="divTableCell">SIDE B:</div>
-                        </div>
-                    <div class="divTableRow">
                         <div class="divTableCell">
-                            <input class="nameAdjustBox" id="nameAdjustBox" value="Player A"></input>
-                            <input class="nameAdjustBox" id="nameAdjustBox" value="Player B"></input><br>  
-                            
-                            <button class="genericButton" onclick="setName("A","A")">+1</button>
-                            <button class="genericButton" onclick="setName("A","A")">-1</button>
-                            <input class="scoreTextBox" id="scoreTextBox" value="0"></input>
+                            <input class="nameAdjustBox" id="matchAPlayerA" value="Player A"></input>
+                            <input class="nameAdjustBox" id="matchAPlayerB" value="Player B"></input><br>             
+                            <button class="genericButton" onclick="adjustScore(1,1,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(1,1,-1)">-1</button>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchATeamA" value="0"></input>
                         </div>
                         <div class="divTableCell">
-                            <input class="nameAdjustBox" id="nameAdjustBox" value="Player A"></input>
-                            <input class="nameAdjustBox" id="nameAdjustBox" value="Player B"></input><br>
-                            <input class="scoreTextBox" id="scoreTextBox" value="0"></input>
-                            <button class="genericButton" onclick="setName("A","A")">+1</button>
-                            <button class="genericButton" onclick="setName("A","A")">-1</button>
+                            <input class="nameAdjustBox" id="matchAPlayerC" value="Player C"></input>
+                            <input class="nameAdjustBox" id="matchAPlayerD" value="Player D"></input><br>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchATeamB" value="0"></input>
+                            <button class="genericButton" onclick="adjustScore(1,2,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(1,2,-1)">-1</button>
                         </div>
                     </div>
                     <div class="divTableRow">
-                            <div class="divTableCell">
-                                <button class="genericButton" onclick="setName("A","A")">Set Names</button>
-                                <button class="genericButton" onclick="setName("A","A")">Animate Clock</button>
-                            </div>
-                            <div class="divTableCell">
-                                
-                                <button class="genericButton" onclick="setName("A","A")">Animate Ident</button>
-                                <button class="genericButton" onclick="setName("A","A")">Animate Ident + Score</button>
-                            </div>
+                        <div class="divTableCell">
+                            <button class="genericButton" onclick="setNames(1)">Set Names</button>
+                            <button class="genericButton" onclick="animateClock(1)">Animate Clock</button>
+                        </div>
+                        <div class="divTableCell">        
+                            <button class="genericButton" onclick="animateIdent(1)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(1)">Animate Ident + Score</button>
+                        </div>
                     </div>
-                        <div class="divTableRow"><br>Generic Lower 3rd A</div>
+
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <br>
+                        </div>
+                        <div class="divTableCell">        
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="divTableRow">MATCH B:</div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <input class="nameAdjustBox" id="matchBPlayerA" value="Player A"></input>
+                            <input class="nameAdjustBox" id="matchBPlayerB" value="Player B"></input><br>             
+                            <button class="genericButton" onclick="adjustScore(2,1,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(2,1,-1)">-1</button>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchBTeamA" value="0"></input>
+                        </div>
+                        <div class="divTableCell">
+                            <input class="nameAdjustBox" id="matchBPlayerC" value="Player C"></input>
+                            <input class="nameAdjustBox" id="matchBPlayerD" value="Player D"></input><br>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchBTeamB" value="0"></input>
+                            <button class="genericButton" onclick="adjustScore(2,2,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(2,2,-1)">-1</button>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <button class="genericButton" onclick="setNames()">Set Names</button>
+                            <button class="genericButton" onclick="animateClock(2)">Animate Clock</button>
+                        </div>
+                        <div class="divTableCell">        
+                            <button class="genericButton" onclick="animateIdent(2)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(2)">Animate Ident + Score</button>
+                        </div>
+                    </div>
+
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <br>
+                        </div>
+                        <div class="divTableCell">        
+                            <br>
+                        </div>
+                    </div>
+
+
+                    <div class="divTableRow">MATCH C:</div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <input class="nameAdjustBox" id="matchCPlayerA" value="Player A"></input>
+                            <input class="nameAdjustBox" id="matchCPlayerB" value="Player B"></input><br>             
+                            <button class="genericButton" onclick="adjustScore(3,1,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(3,1,-1)">-1</button>
+                            <input class="scoreTextBox" id="scoreTextBox" value="0"></input>
+                        </div>
+                        <div class="divTableCell">
+                            <input class="nameAdjustBox" id="matchCPlayerC" value="Player C"></input>
+                            <input class="nameAdjustBox" id="matchCPlayerD" value="Player D"></input><br>
+                            <input class="scoreTextBox" id="scoreTextBox" value="0"></input>
+                            <button class="genericButton" onclick="adjustScore(3,2,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(3,2,-1)">-1</button>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <button class="genericButton" onclick="setNames()">Set Names</button>
+                            <button class="genericButton" onclick="animateClock(3)">Animate Clock</button>
+                        </div>
+                        <div class="divTableCell">        
+                            <button class="genericButton" onclick="animateIdent(3)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(3)">Animate Ident + Score</button>
+                        </div>
+                    </div>
+
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <br>
+                        </div>
+                        <div class="divTableCell">        
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="divTableRow">MATCH D:</div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <input class="nameAdjustBox" id="matchDPlayerA" value="Player A"></input>
+                            <input class="nameAdjustBox" id="matchDPlayerB" value="Player B"></input><br>             
+                            <button class="genericButton" onclick="adjustScore(4,1,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(4,1,-1)">-1</button>
+                            <input class="scoreTextBox" id="scoreTextBox" value="0"></input>
+                        </div>
+                        <div class="divTableCell">
+                            <input class="nameAdjustBox" id="matchDPlayerC" value="Player C"></input>
+                            <input class="nameAdjustBox" id="matchDPlayerD" value="Player D"></input><br>
+                            <input class="scoreTextBox" id="scoreTextBox" value="0"></input>
+                            <button class="genericButton" onclick="adjustScore(4,2,1)">+1</button>
+                            <button class="genericButton" onclick="adjustScore(4,2,-1)">-1</button>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <button class="genericButton" onclick="setNames()">Set Names</button>
+                            <button class="genericButton" onclick="animateClock(4)">Animate Clock</button>
+                        </div>
+                        <div class="divTableCell">        
+                            <button class="genericButton" onclick="animateIdent(4)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(4)">Animate Ident + Score</button>
+                        </div>
+                    </div>
+
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <br>
+                        </div>
+                        <div class="divTableCell">        
+                            <br>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            MATCH B:
+                        </div>
+                        <div class="divTableCell">        
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="divTableRow"><br>Generic Lower 3rd A</div>
                         <div class="divTableRow">
                             <div class="divTableCell">
-                                <input class="nameAdjustBox" id="nameAdjustBox" value="Lower Third Name A"></input>
-                                <input class="nameAdjustBox" id="nameAdjustBox" value="Lower Third Title A"></input><br>
-                                <button class="genericButton" onclick="setName("A","A")">Set Graphic A</button>
-                                <button class="genericButton" onclick="setName("A","A")">Animate A</button>
+                                <input class="nameAdjustBox" id="lowerThirdAName" value="Lower Third Name A"></input>
+                                <input class="nameAdjustBox" id="lowerThirdATitle" value="Lower Third Title A"></input><br>
+                                <button class="genericButton" onclick="setGraphic(1)">Set Graphic A</button>
+                                <button class="genericButton" onclick="animateGraphic(1)">Animate A</button>
                             </div>    
                         </div>
                         <div class="divTableRow"><br>Generic Lower 3rd B</div>
                         <div class="divTableRow">
                             <div class="divTableCell">
-                                <input class="nameAdjustBox" id="nameAdjustBox" value="Lower Third Name B"></input>
-                                <input class="nameAdjustBox" id="nameAdjustBox" value="Lower Third Title B"></input><br>
-                                <button class="genericButton" onclick="setName("A","A")">Set Graphic B</button>
-                                <button class="genericButton" onclick="setName("A","A")">Animate B</button>
+                                <input class="nameAdjustBox" id="lowerThirdBName" value="Lower Third Name B"></input>
+                                <input class="nameAdjustBox" id="lowerThirdBTitle" value="Lower Third Title B"></input><br>
+                                <button class="genericButton" onclick="setGraphic(2)">Set Graphic B</button>
+                                <button class="genericButton" onclick="animateGraphic(2)">Animate B</button>
                             </div>
                         </div>
                 </div>
