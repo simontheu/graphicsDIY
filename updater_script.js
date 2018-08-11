@@ -5,10 +5,9 @@ socket.emit('getNames');
 var score = [[0,0],[0,0],[0,0],[0,0]];//All match scores zeroed
 
 //Outgoing updates to index 
-function animateClock(matchNumber) { 
-  console.log("TEST");
-  socket.emit('animateClock',matchNumber);
-  console.log("TEST");
+function animateClock(match) { 
+  //get initials from teams via match number
+  socket.emit('animateClock',match, score, "XX/VV");
 }
 
 function setNames(matchNumber) { 
@@ -37,7 +36,7 @@ function animateIdent(matchNumber) {
 function adjustScore(match, team, adjustAmount) {
   console.log("adjustScore");
   score[match][team] = score[match][team] + adjustAmount;
-  socket.emit("adjustScore", match, team, score[match][team]);
+  socket.emit("adjustScore", score);
   populateScoreBoxes();
 }
 
@@ -46,13 +45,11 @@ function populateScoreBoxes() {
   var teams = ["A","B"];
   for (i=0;i<4;i++) {
     for (j=0;j<2;j++) {
-      //scoreTextBoxMatchBTeamB
-      console.log("scoreTextBoxMatch" + matches[i-1] + "Team" + teams[j-1]);
-      var docElem = document.getElementById("scoreTextBoxMatch" + matches[i-1] + "Team" + teams[j-1]);
-      docElem.textContent = "xx";//(score[i-1][j-1]);
+      var docElem = document.getElementById("scoreTextBoxMatch" + matches[i] + "Team" + teams[j]);
+      docElem.value = score[i][j];
     }
   }
-}
+} 
 
 socket.on('gotNames', function(msg){
   console.log(msg);

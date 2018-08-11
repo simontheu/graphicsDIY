@@ -52,9 +52,9 @@ app.get('/node_modules/easytimer/dist/easytimer.min.js', function(req, res) {
 });
 
 io.on('connection', function(socket){
-    socket.on('animateClock', function(msg){
+    socket.on('animateClock', function(match, score, initials){
         console.log("Test index");
-        io.emit('animateClock',  msg);
+        io.emit('animateClock', match, score, initials);
     });
     socket.on('animateIdent', function(msg){
         var graphicPlayers = Array();
@@ -71,9 +71,9 @@ io.on('connection', function(socket){
             if (err) console.log(err); 
           })
     });
-    socket.on('adjustScore', function(match, team, newScore){
-        console.log("Test score adjust:" + match + ":" + team + ":" + newScore);
-        io.emit('adjustScore', match, team, newScore);
+    socket.on('adjustScore', function(score){
+        console.log("Test score adjust:" + score);
+        io.emit('adjustScore', sScore);
     });
 
     socket.on('getNames', function(){

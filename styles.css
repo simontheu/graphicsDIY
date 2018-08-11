@@ -176,7 +176,7 @@ body
     left: 8%;
     margin-left: 0px;
     bottom: 10%;
-    width: 1240px;
+    width: 1450px;
     opacity: 0;
 }
 
@@ -185,7 +185,7 @@ body
     position: absolute;
     align-self: center;
     animation-duration: 0.75s;
-    left: 8%;
+    left: 12%;
     margin-left: 0px;
     bottom: 10%;
     width: 1240px;
@@ -197,7 +197,7 @@ body
     align-self: center;
     animation-duration: 0.75s;
     opacity: 0;
-    left: 8%;
+    left: 12%;
     margin-left: 0px;
     bottom: 10%;
     width: 1240px;
