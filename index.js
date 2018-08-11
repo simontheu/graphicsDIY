@@ -27,12 +27,12 @@ app.get('/media/bowls/bowls-ident.png', function(req, res) {
     res.sendFile(__dirname + '/media/bowls/bowls-ident.png');
 });
 
-app.get('/media/full_time_lower_3rd.png', function(req, res) {
-    res.sendFile(__dirname + '/media/full_time_lower_3rd.png');
+app.get('/media/bowls/bowls-ident-score.png', function(req, res) {
+    res.sendFile(__dirname + '/media/bowls/bowls-ident-score.png');
 });
 
-app.get('/media/SaintsL3.png', function(req, res) {
-    res.sendFile(__dirname + '/media/SaintsL3.png');
+app.get('/media/bowls/bowls-l3rd.png', function(req, res) {
+    res.sendFile(__dirname + '/media/bowls/bowls-l3rd.png');
 });
 
 app.get('/media/ArmyL3.png', function(req, res) {
@@ -71,9 +71,28 @@ io.on('connection', function(socket){
             if (err) console.log(err); 
           })
     });
+    socket.on('animateIdentWithScore', function(matchNum, score){
+        var graphicPlayers = Array();
+        var matches = ["A","B","C","D"];
+        var match = matches[matchNum];
+        jsonfile.readFile("names.json", function(err, names) {
+            names.forEach(element => {
+                if (element.match == match) {
+                    graphicPlayers.push(element);
+                }
+            });
+            console.log(graphicPlayers);
+            io.emit('animateIdentWithScore', graphicPlayers, score, matchNum);//Only send valid names
+            if (err) console.log(err); 
+          })
+    });
     socket.on('adjustScore', function(score, match){
         console.log("Test score adjust:" + score, match);
         io.emit('adjustScore', score, match);
+    });
+
+    socket.on('animateGraphic', function(graphic){
+        io.emit('animateGraphic', graphic);
     });
 
     socket.on('getNames', function(){

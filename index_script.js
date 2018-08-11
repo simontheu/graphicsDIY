@@ -56,16 +56,40 @@ socket.on('setLowerThirdScoreBackground', function(msg){
 
 
 socket.on('animateIdent', function(msg){
-  console.log("monosodium glutomate" + msg);
   if (document.getElementById("lowerThirdIdentDiv").className == "lowerThirdScoreIn") {
     document.getElementById("lowerThirdIdentDiv").className = "lowerThirdScoreOut";
   } else {
-    console.log("Send it in");//
     msg.forEach(player => {
-      console.log("player:" + player.player);
       document.getElementById("lower3rdIdentPlayer" + player.player + "Val").textContent = player.name;
     });
     document.getElementById("lowerThirdIdentDiv").className = "lowerThirdScoreIn";
+  }
+});
+
+socket.on('animateIdentWithScore', function(players, score, match){
+  //lower3rdScorePlayerAVal
+  console.log("score" + score);
+  console.log("match" + match);
+  if (document.getElementById("lowerThirdScoreDiv").className == "lowerThirdScoreIn") {
+    document.getElementById("lowerThirdScoreDiv").className = "lowerThirdScoreOut";
+  } else {
+    players.forEach(player => {
+      document.getElementById("lower3rdScorePlayer" + player.player + "Val").textContent = player.name;
+    });
+    document.getElementById("lower3rdScoreABVal").textContent = score[match][0];
+    document.getElementById("lower3rdScoreCDVal").textContent = score[match][1];
+    document.getElementById("lowerThirdScoreDiv").className = "lowerThirdScoreIn";
+  }
+});
+
+socket.on('animateGraphic', function(graphic){
+  console.log(graphic);
+  if (document.getElementById("lowerThirdGraphicDiv").className == "lowerThirdGraphicIn") {
+    document.getElementById("lowerThirdGraphicDiv").className = "lowerThirdGraphicOut";
+  } else {
+    document.getElementById("lower3rdNameVal").textContent = graphic.name;
+    document.getElementById("lower3rdTitleVal").textContent = graphic.title;
+    document.getElementById("lowerThirdGraphicDiv").className = "lowerThirdGraphicIn";
   }
 });
 

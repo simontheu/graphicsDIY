@@ -37,11 +37,28 @@ function animateIdent(matchNumber) {
   socket.emit("animateIdent", matchNumber);
 }
 
+function animateIdentWithScore(matchNumber) {
+  console.log("animateIdentWithScore");
+  socket.emit("animateIdentWithScore", matchNumber, score);
+}
+
 function adjustScore(match, team, adjustAmount) {
   console.log("adjustScore");
   score[match][team] = score[match][team] + adjustAmount;
   socket.emit("adjustScore", score, match);
   populateScoreBoxes();
+}
+
+function animateGraphic(graphic) {
+  var graphicLetters = ["A","B"];
+  console.log(graphic);
+  var graphicLetter = graphicLetters[graphic];
+  console.log(graphicLetter);
+  var name = document.getElementById("lowerThird" + graphicLetter + "Name").value;
+  var title = document.getElementById("lowerThird" + graphicLetter + "Title").value;
+  var graphicContent = {"name" : name,
+                        "title" : title}
+  socket.emit("animateGraphic", graphicContent);
 }
 
 function populateScoreBoxes() {

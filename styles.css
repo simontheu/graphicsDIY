@@ -180,6 +180,16 @@ body
     opacity: 0;
 }
 
+.relative-lower-3rd-graphic {
+    position: relative;
+    align-self: center;
+    left: 8%;
+    margin-left: 200px;
+    bottom: 10%;
+    width: 1450px;
+    opacity: 0;
+}
+
 .lowerThirdScoreIn {
     animation-name: lowerThirdSlideIn;
     position: absolute;
@@ -198,6 +208,29 @@ body
     animation-duration: 0.75s;
     opacity: 0;
     left: 12%;
+    margin-left: 0px;
+    bottom: 10%;
+    width: 1240px;
+}
+
+.lowerThirdGraphicIn {
+    animation-name: lowerThirdSlideIn;
+    position: absolute;
+    align-self: center;
+    animation-duration: 0.75s;
+    left: 30%;
+    margin-left: 0px;
+    bottom: 10%;
+    width: 1240px;
+}
+
+.lowerThirdGraphicOut{
+    animation-name: lowerThirdSlideOut;
+    position: absolute;
+    align-self: center;
+    animation-duration: 0.75s;
+    opacity: 0;
+    left: 30%;
     margin-left: 0px;
     bottom: 10%;
     width: 1240px;
@@ -315,12 +348,12 @@ body
 .absolute-lower-3rd-left-score { 
     position:absolute;
     bottom:0;
-    font-size:36px;
+    font-size:54px;
     font-family:"Arial";
     color: rgba(251,251,251,0.9);
     background: rgba(251,251,251,0.0);
-    top: 155px;
-    left: -43px;
+    top: 73px;
+    left: -58px;
     width:100%;
     text-align: center;
 }
@@ -328,14 +361,40 @@ body
 .absolute-lower-3rd-right-score { 
     position:absolute;
     bottom:0;
-    font-size:36px;
+    font-size:54px;
     font-family:"Arial";
-    color: rgba(0,0,0,0.9);
+    color: rgba(251,251,251,0.9);
     background: rgba(251,251,251,0.0);
-    top: 155px;
-    left: 165;
+    top: 73px;
+    left: 255;
     width:100%;
     text-align: center;
+}
+
+.absolute-lower-3rd-name{
+    position:absolute;
+    bottom:0;
+    font-size:50px;
+    font-family:"Noise Machine";
+    color: rgba(0,0,0,0.9);
+    background: rgba(251,251,251,0.0);
+    top: 75px;
+    left: -615px;
+    width:100%;
+    text-align: right;
+}
+
+.absolute-lower-3rd-title{
+    position:absolute;
+    bottom:0;
+    font-size:50px;
+    font-family:"Noise Machine";
+    color: rgba(0,0,0,0.9);
+    background: rgba(251,251,251,0.0);
+    top: 120px;
+    left: -615px;
+    width:100%;
+    text-align: right;
 }
 
 .absolute-lower-3rd-ident-playerA-name{ 
@@ -387,6 +446,57 @@ body
     width:100%;
     text-align: left;
 }
+
+.absolute-lower-3rd-ident-score-playerA-name{ 
+    position:absolute;
+    bottom:0;
+    font-size:50px;
+    font-family:"Noise Machine";
+    color: rgba(251,251,251,0.9);
+    background: rgba(251,251,251,0.0);
+    top: -25px;
+    left: -625px;
+    width:100%;
+    text-align: right;
+}
+
+.absolute-lower-3rd-ident-score-playerB-name{ 
+    position:absolute;
+    bottom:0;
+    font-size:50px;
+    font-family:"Noise Machine";
+    color: rgba(251,251,251,0.9);
+    background: rgba(251,251,251,0.0);
+    top: 20px;
+    left: -625px;
+    width:100%;
+    text-align: right;   
+}
+.absolute-lower-3rd-ident-score-playerC-name{ 
+    position:absolute;
+    bottom:0;
+    font-size:50px;
+    font-family:"Noise Machine";
+    color: rgba(251,251,251,0.9);
+    background: rgba(251,251,251,0.0);
+    top: -25px;
+    left: 825px;
+    width:100%;
+    text-align: left;
+}
+.absolute-lower-3rd-ident-score-playerD-name{ 
+    position:absolute;
+    bottom:0;
+    font-size:50px;
+    font-family:"Noise Machine";
+    color: rgba(251,251,251,0.9);
+    background: rgba(251,251,251,0.0);
+    top: 20px;
+    left: 825px;
+    width:100%;
+    text-align: left;
+}
+
 .scoreButtons {
     float: left;
     width: 40%;
