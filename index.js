@@ -11,7 +11,7 @@ app.get('/index', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/updater', function(req, res){
+app.get('/uUetg10mTPk8H2bthlJQ', function(req, res){
     res.sendFile(__dirname + '/updater.html');
 });
 
