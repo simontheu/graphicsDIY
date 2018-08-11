@@ -254,7 +254,7 @@ body
     font-family:"Arial";
     color: rgba(0,0,0,0.9);
     background: rgba(251,251,251,0.0);
-    top: 15px;
+    top: 12px;
     left: -310px;
     width:100%;
     text-align: right;
@@ -267,7 +267,7 @@ body
     font-family:"Arial";
     color: rgba(0,0,0,0.9);
     background: rgba(251,251,251,0.0);
-    top: 15px;
+    top: 12px;
     left: -0;
     width:100%;
     text-align: center;
@@ -280,7 +280,7 @@ body
     font-family:"Arial";
     color: rgba(0,0,0,0.9);
     background: rgba(251,251,251,0.0);
-    top: 15px;
+    top: 12px;
     left: 310;
     width:100%;
     text-align: left;
@@ -293,8 +293,8 @@ body
     font-family:"Arial";
     color: rgba(255,255,110,0.9);
     background: rgba(251,251,251,0.0);
-    top: 17px;
-    left: -165px;
+    top: 12px;
+    left: -170px;
     width:100%;
     text-align: center;
 }
@@ -306,8 +306,8 @@ body
     font-family:"Arial";
     color: rgba(255,255,110,0.9);
     background: rgba(251,251,251,0.0);
-    top: 17px;
-    left: 167;
+    top: 12px;
+    left: 172;
     width:100%;
     text-align: center;
 }

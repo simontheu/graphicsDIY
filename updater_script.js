@@ -7,7 +7,11 @@ var score = [[0,0],[0,0],[0,0],[0,0]];//All match scores zeroed
 //Outgoing updates to index 
 function animateClock(match) { 
   //get initials from teams via match number
-  socket.emit('animateClock',match, score, "XX/VV");
+  var matches = ["A","B","C","D"];
+  initials = Array();
+  initials.push (document.getElementById("initialsMatch" + matches[match] + "TeamA").value);
+  initials.push (document.getElementById("initialsMatch" + matches[match] + "TeamB").value);
+  socket.emit('animateClock',match, score, initials);
 }
 
 function setNames(matchNumber) { 
@@ -36,7 +40,7 @@ function animateIdent(matchNumber) {
 function adjustScore(match, team, adjustAmount) {
   console.log("adjustScore");
   score[match][team] = score[match][team] + adjustAmount;
-  socket.emit("adjustScore", score);
+  socket.emit("adjustScore", score, match);
   populateScoreBoxes();
 }
 
@@ -45,6 +49,7 @@ function populateScoreBoxes() {
   var teams = ["A","B"];
   for (i=0;i<4;i++) {
     for (j=0;j<2;j++) {
+      //console.log(document.getElementById("scoreTextBoxMatch" + matches[i] + "Team" + teams[j]));
       var docElem = document.getElementById("scoreTextBoxMatch" + matches[i] + "Team" + teams[j]);
       docElem.value = score[i][j];
     }

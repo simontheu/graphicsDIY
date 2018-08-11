@@ -6,13 +6,10 @@ socket.emit('getTeams',0);
 var timer = new Timer();
 var onAirMatch = -1;
 
-socket.on('adjustScore', function(score){
+socket.on('adjustScore', function(score, match){
   if (match == onAirMatch) { 
-    if (team == 0) {
-      document.getElementById("teamAScoreVal").textContent = score[match][team];
-    } else {
-      document.getElementById("teamBScoreVal").textContent = score[match][team];
-    }    
+      document.getElementById("teamAScoreVal").textContent = score[match][0];
+      document.getElementById("teamBScoreVal").textContent = score[match][1];    
   }
 });
 
@@ -22,12 +19,13 @@ socket.on('animateClock', function(match, score, initials){
     document.getElementById("scoreClockDiv").className = "rotateOut";
   } else {
     //Populate score and name initials for clock before animating
-    document.getElementById("teamAInitialsVal").textContent = initials;
+    document.getElementById("teamAInitialsVal").textContent =  initials[0];
+    document.getElementById("teamBInitialsVal").textContent = initials[1];
     console.log(match);
     console.log(score[0]);
     document.getElementById("teamAScoreVal").textContent = score[match][0];
     document.getElementById("teamBScoreVal").textContent = score[match][1];
-    onAirClock = match;
+    onAirMatch = match;
     document.getElementById("scoreClockDiv").className = "rotateIn";
   }
 });

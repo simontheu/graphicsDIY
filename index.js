@@ -53,13 +53,13 @@ app.get('/node_modules/easytimer/dist/easytimer.min.js', function(req, res) {
 
 io.on('connection', function(socket){
     socket.on('animateClock', function(match, score, initials){
-        console.log("Test index");
+        console.log("Test index" + match + ";" + score + ";" + initials[0]);
         io.emit('animateClock', match, score, initials);
     });
     socket.on('animateIdent', function(msg){
         var graphicPlayers = Array();
         var matches = ["A","B","C","D"];
-        var match = matches[msg-1];
+        var match = matches[msg];
         jsonfile.readFile("names.json", function(err, names) {
             names.forEach(element => {
                 if (element.match == match) {
@@ -71,9 +71,9 @@ io.on('connection', function(socket){
             if (err) console.log(err); 
           })
     });
-    socket.on('adjustScore', function(score){
-        console.log("Test score adjust:" + score);
-        io.emit('adjustScore', sScore);
+    socket.on('adjustScore', function(score, match){
+        console.log("Test score adjust:" + score, match);
+        io.emit('adjustScore', score, match);
     });
 
     socket.on('getNames', function(){

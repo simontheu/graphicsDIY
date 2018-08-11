@@ -11,30 +11,31 @@
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchAPlayerA" value="Player A"></input>
-                            <input class="nameAdjustBox" id="matchAPlayerB" value="Player B"></input><br>             
+                            <input class="nameAdjustBox" id="matchAPlayerB" value="Player B"></input><br>  
+                            <input class="scoreTextBox" id="scoreTextBoxMatchATeamA" value="0"></input>         
                             <button class="genericButton" onclick="adjustScore(0,0,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(0,0,-1)">-1</button>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchATeamA" value="0"></input>
+                            <input class="nameAdjustBox" id="initialsMatchATeamA" value="0"></input>
                         </div>
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchAPlayerC" value="Player C"></input>
                             <input class="nameAdjustBox" id="matchAPlayerD" value="Player D"></input><br>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchATeamB" value="0"></input>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchATeamB" value="0"></input>     
                             <button class="genericButton" onclick="adjustScore(0,1,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(0,1,-1)">-1</button>
+                            <input class="nameAdjustBox" id="initialsMatchATeamB" value="0"></input>
                         </div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell">
-                            <button class="genericButton" onclick="setNames(1)">Set Names</button>
-                            <button class="genericButton" onclick="animateClock(1)">Animate Clock</button>
+                            <button class="genericButton" onclick="setNames()">Set Names</button>
+                            <button class="genericButton" onclick="animateClock(0)">Animate Clock</button>
                         </div>
                         <div class="divTableCell">        
-                            <button class="genericButton" onclick="animateIdent(1)">Animate Ident</button>
-                            <button class="genericButton" onclick="animateIdentWithScore(1)">Animate Ident + Score</button>
+                            <button class="genericButton" onclick="animateIdent(0)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(0)">Animate Ident + Score</button>
                         </div>
                     </div>
-
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <br>
@@ -48,30 +49,31 @@
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchBPlayerA" value="Player A"></input>
-                            <input class="nameAdjustBox" id="matchBPlayerB" value="Player B"></input><br>             
+                            <input class="nameAdjustBox" id="matchBPlayerB" value="Player B"></input><br>  
+                            <input class="scoreTextBox" id="scoreTextBoxMatchBTeamA" value="0"></input>         
                             <button class="genericButton" onclick="adjustScore(1,0,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(1,0,-1)">-1</button>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchBTeamA" value="0"></input>
+                            <input class="nameAdjustBox" id="initialsMatchBTeamA" value="0"></input>
                         </div>
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchBPlayerC" value="Player C"></input>
                             <input class="nameAdjustBox" id="matchBPlayerD" value="Player D"></input><br>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchBTeamB" value="0"></input>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchBTeamB" value="0"></input>     
                             <button class="genericButton" onclick="adjustScore(1,1,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(1,1,-1)">-1</button>
+                            <input class="nameAdjustBox" id="initialsMatchBTeamB" value="0"></input>
                         </div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <button class="genericButton" onclick="setNames()">Set Names</button>
-                            <button class="genericButton" onclick="animateClock(2)">Animate Clock</button>
+                            <button class="genericButton" onclick="animateClock(1)">Animate Clock</button>
                         </div>
                         <div class="divTableCell">        
-                            <button class="genericButton" onclick="animateIdent(2)">Animate Ident</button>
-                            <button class="genericButton" onclick="animateIdentWithScore(2)">Animate Ident + Score</button>
+                            <button class="genericButton" onclick="animateIdent(1)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(1)">Animate Ident + Score</button>
                         </div>
                     </div>
-
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <br>
@@ -86,30 +88,31 @@
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchCPlayerA" value="Player A"></input>
-                            <input class="nameAdjustBox" id="matchCPlayerB" value="Player B"></input><br>             
+                            <input class="nameAdjustBox" id="matchCPlayerB" value="Player B"></input><br>  
+                            <input class="scoreTextBox" id="scoreTextBoxMatchCTeamA" value="0"></input>         
                             <button class="genericButton" onclick="adjustScore(2,0,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(2,0,-1)">-1</button>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchCTeamA" value="0"></input>
+                            <input class="nameAdjustBox" id="initialsMatchCTeamA" value="0"></input>
                         </div>
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchCPlayerC" value="Player C"></input>
                             <input class="nameAdjustBox" id="matchCPlayerD" value="Player D"></input><br>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchCTeamB" value="0"></input>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchCTeamB" value="0"></input>     
                             <button class="genericButton" onclick="adjustScore(2,1,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(2,1,-1)">-1</button>
+                            <input class="nameAdjustBox" id="initialsMatchCTeamB" value="0"></input>
                         </div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <button class="genericButton" onclick="setNames()">Set Names</button>
-                            <button class="genericButton" onclick="animateClock(3)">Animate Clock</button>
+                            <button class="genericButton" onclick="animateClock(2)">Animate Clock</button>
                         </div>
                         <div class="divTableCell">        
-                            <button class="genericButton" onclick="animateIdent(3)">Animate Ident</button>
-                            <button class="genericButton" onclick="animateIdentWithScore(3)">Animate Ident + Score</button>
+                            <button class="genericButton" onclick="animateIdent(2)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(2)">Animate Ident + Score</button>
                         </div>
                     </div>
-
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <br>
@@ -123,46 +126,40 @@
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchDPlayerA" value="Player A"></input>
-                            <input class="nameAdjustBox" id="matchDPlayerB" value="Player B"></input><br>             
+                            <input class="nameAdjustBox" id="matchDPlayerB" value="Player B"></input><br>  
+                            <input class="scoreTextBox" id="scoreTextBoxMatchDTeamA" value="0"></input>         
                             <button class="genericButton" onclick="adjustScore(3,0,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(3,0,-1)">-1</button>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchDTeamA" value="0"></input>
+                            <input class="nameAdjustBox" id="initialsMatchDTeamA" value="0"></input>
                         </div>
                         <div class="divTableCell">
                             <input class="nameAdjustBox" id="matchDPlayerC" value="Player C"></input>
                             <input class="nameAdjustBox" id="matchDPlayerD" value="Player D"></input><br>
-                            <input class="scoreTextBox" id="scoreTextBoxMatchDTeamB" value="0"></input>
+                            <input class="scoreTextBox" id="scoreTextBoxMatchDTeamB" value="0"></input>     
                             <button class="genericButton" onclick="adjustScore(3,1,1)">+1</button>
                             <button class="genericButton" onclick="adjustScore(3,1,-1)">-1</button>
+                            <input class="nameAdjustBox" id="initialsMatchDTeamB" value="0"></input>
                         </div>
                     </div>
                     <div class="divTableRow">
                         <div class="divTableCell">
                             <button class="genericButton" onclick="setNames()">Set Names</button>
-                            <button class="genericButton" onclick="animateClock(4)">Animate Clock</button>
+                            <button class="genericButton" onclick="animateClock(3)">Animate Clock</button>
                         </div>
                         <div class="divTableCell">        
-                            <button class="genericButton" onclick="animateIdent(4)">Animate Ident</button>
-                            <button class="genericButton" onclick="animateIdentWithScore(4)">Animate Ident + Score</button>
+                            <button class="genericButton" onclick="animateIdent(3)">Animate Ident</button>
+                            <button class="genericButton" onclick="animateIdentWithScore(3)">Animate Ident + Score</button>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">
+                            <br>
+                        </div>
+                        <div class="divTableCell">        
+                            <br>
                         </div>
                     </div>
 
-                    <div class="divTableRow">
-                        <div class="divTableCell">
-                            <br>
-                        </div>
-                        <div class="divTableCell">        
-                            <br>
-                        </div>
-                    </div>
-                    <div class="divTableRow">
-                        <div class="divTableCell">
-                            MATCH B:
-                        </div>
-                        <div class="divTableCell">        
-                            <br>
-                        </div>
-                    </div>
 
                     <div class="divTableRow"><br>Generic Lower 3rd A</div>
                         <div class="divTableRow">
